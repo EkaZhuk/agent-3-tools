@@ -77,6 +77,8 @@ def main():
             while True:
                 try:
                     q = input("\nВы: ").strip()
+                    # чиним "битые" символы, которые появляются при стирании кириллицы в терминале Docker
+                    q = q.encode("utf-8", "surrogateescape").decode("utf-8", "replace").replace("\ufffd", "")
                 except (EOFError, KeyboardInterrupt):
                     break
                 if not q:
